@@ -1,0 +1,17 @@
+    <!DOCTYPE knimeNode PUBLIC "-//UNIKN//DTD KNIME Node 2.0//EN" "http://www.knime.org/Node.dtd">
+<knimeNode icon="icons/threshold.png" type="Manipulator">
+	<name>Label Propagation</name>
+	<shortDescription>
+		Own implementation of label propagation algorithm
+	</shortDescription>
+
+	<fullDescription>
+		<intro>see Zhu
+		</intro>
+	</fullDescription>
+
+	<ports>
+		<inPort name="labeled" index="0">Labeled data</inPort>
+		<inPort name="unlabeled" index="1">Unlabeled data</inPort>
+	</ports>
+</knimeNode>

@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: KNIME Parallel Universes (Semi-Supervised Learning)
+Bundle-SymbolicName: org.knime.paruni.semisupervised;singleton:=true
+Bundle-Version: 2.9.0.qualifier
+Bundle-ClassPath: .,
+ lib/GLPKSolverPack.jar,
+ lib/SCPSolver.jar,
+ lib/LPSOLVESolverPack.jar
+Bundle-Vendor: Chair for Bioinformatics and Information Mining
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.knime.base;bundle-version="[2.9.0,3.0.0)",
+ org.knime.workbench;bundle-version="[2.9.0,3.0.0)",
+ org.knime.workbench.repository;bundle-version="[2.9.0,3.0.0)",
+ org.knime.ext.weka_3.7;bundle-version="2.9.0",
+ org.knime.paruni;bundle-version="2.9.0",
+ org.knime.distmatrix;bundle-version="2.10.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+

@@ -1,0 +1,18 @@
+<!DOCTYPE knimeNode PUBLIC "-//UNIKN//DTD KNIME Node 2.0//EN" "http://www.knime.org/Node.dtd">
+<knimeNode icon="icons/threshold.png" type="Manipulator">
+	<name>SSAKDE</name>
+	<shortDescription>
+		Semi-supervised kernel density estimation
+	</shortDescription>
+
+	<fullDescription>
+		<intro>see Wang et. al (Semi-supervised kernel density estimation for
+			video annotation)
+		</intro>
+	</fullDescription>
+
+	<ports>
+		<inPort name="labeled" index="0">Labeled data</inPort>
+		<inPort name="unlabeled" index="1">Unlabeled data</inPort>
+	</ports>
+</knimeNode>
