@@ -47,7 +47,7 @@
  *
  * Created on 03.04.2014 by Christian Dietz
  */
-package org.knime.paruni.semisupervised.nodes.activesearch;
+package org.knime.semisupervised.nodes.activesearch;
 
 import java.util.ArrayList;
 import java.util.HashMap;

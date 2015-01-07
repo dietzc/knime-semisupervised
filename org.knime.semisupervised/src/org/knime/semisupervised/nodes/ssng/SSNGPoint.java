@@ -1,4 +1,4 @@
-package org.knime.paruni.semisupervised.nodes.ssng;
+package org.knime.semisupervised.nodes.ssng;
 
 /*
  * ------------------------------------------------------------------------

@@ -1,0 +1,19 @@
+<!DOCTYPE knimeNode PUBLIC "-//UNIKN//DTD KNIME Node 2.0//EN" "http://www.knime.org/Node.dtd">
+<knimeNode icon="icons/threshold.png" type="Manipulator">
+	<name>Active Search on Graphs</name>
+	<shortDescription>
+		see: Active Search on Graphs (KDD 13)
+	</shortDescription>
+
+	<fullDescription>
+		<intro>
+		</intro>
+	</fullDescription>
+
+	<ports>
+		<inPort name="data" index="0">
+			data
+		</inPort>
+		<outPort name="estimates" index="1">data</outPort>
+	</ports>
+</knimeNode>

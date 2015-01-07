@@ -1,4 +1,4 @@
-package org.knime.paruni.semisupervised.nodes.lp;
+package org.knime.semisupervised.nodes.ssakde;
 
 import org.knime.core.data.StringValue;
 import org.knime.core.node.NodeDialogPane;
@@ -11,7 +11,7 @@ import org.knime.core.node.defaultnodesettings.DialogComponentNumber;
 /**
  *
  */
-public class LabelPropagationNodeFactory extends NodeFactory<LabelPropagationNodeModel> {
+public class SSAKDENodeFactory extends NodeFactory<SSAKDENodeModel> {
 
     /**
      * {@inheritDoc}
@@ -33,8 +33,7 @@ public class LabelPropagationNodeFactory extends NodeFactory<LabelPropagationNod
      * {@inheritDoc}
      */
     @Override
-    public NodeView<LabelPropagationNodeModel> createNodeView(final int viewIndex,
-                                                              final LabelPropagationNodeModel nodeModel) {
+    public NodeView<SSAKDENodeModel> createNodeView(final int viewIndex, final SSAKDENodeModel nodeModel) {
         return null;
     }
 
@@ -42,8 +41,8 @@ public class LabelPropagationNodeFactory extends NodeFactory<LabelPropagationNod
      * {@inheritDoc}
      */
     @Override
-    public LabelPropagationNodeModel createNodeModel() {
-        return new LabelPropagationNodeModel();
+    public SSAKDENodeModel createNodeModel() {
+        return new SSAKDENodeModel();
     }
 
     /**
@@ -55,17 +54,19 @@ public class LabelPropagationNodeFactory extends NodeFactory<LabelPropagationNod
         return new DefaultNodeSettingsPane() {
             {
 
-                addDialogComponent(new DialogComponentColumnNameSelection(
-                        LabelPropagationNodeModel.createClassColModel(), "Class Column (Port 1)", 1, StringValue.class));
+                addDialogComponent(new DialogComponentColumnNameSelection(SSAKDENodeModel.createClassColModel(),
+                        "Class Column (Port 1)", 1, StringValue.class));
 
-                addDialogComponent(new DialogComponentNumber(LabelPropagationNodeModel.createNumNeighborsModel(),
+                addDialogComponent(new DialogComponentNumber(SSAKDENodeModel.createNumNeighborsModel(),
                         "Number of Neighbors", 1));
 
-                addDialogComponent(new DialogComponentNumber(LabelPropagationNodeModel.createNumIterationsModel(),
+                addDialogComponent(new DialogComponentNumber(SSAKDENodeModel.createNumIterationsModel(),
                         "Number of Iterations", 1));
 
-                addDialogComponent(new DialogComponentNumber(LabelPropagationNodeModel.createKernelSmoothingModel(),
+                addDialogComponent(new DialogComponentNumber(SSAKDENodeModel.createKernelSmoothingModel(),
                         "Number of Kernel Smoothing", 0.05));
+
+                addDialogComponent(new DialogComponentNumber(SSAKDENodeModel.createInitSigmaModel(), "Sigma", 0.05));
 
             }
         };

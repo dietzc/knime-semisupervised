@@ -47,7 +47,7 @@
  *
  * Created on Feb 3, 2014 by dietzc
  */
-package org.knime.paruni.semisupervised.nodes.activesearch;
+package org.knime.semisupervised.nodes.activesearch;
 
 import java.util.ArrayList;
 import java.util.concurrent.Callable;

@@ -1,4 +1,4 @@
-package org.knime.paruni.semisupervised.nodes.ssng;
+package org.knime.semisupervised.nodes.ssng;
 
 import org.knime.core.data.IntValue;
 import org.knime.core.node.NodeDialogPane;

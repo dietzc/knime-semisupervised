@@ -1,4 +1,4 @@
-package org.knime.paruni.semisupervised.nodes.lp;
+package org.knime.semisupervised.nodes.lp;
 
 import java.util.ArrayList;
 import java.util.HashMap;

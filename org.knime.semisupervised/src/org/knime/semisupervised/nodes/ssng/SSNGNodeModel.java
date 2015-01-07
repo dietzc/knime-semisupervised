@@ -1,4 +1,4 @@
-package org.knime.paruni.semisupervised.nodes.ssng;
+package org.knime.semisupervised.nodes.ssng;
 
 import java.io.File;
 import java.io.IOException;

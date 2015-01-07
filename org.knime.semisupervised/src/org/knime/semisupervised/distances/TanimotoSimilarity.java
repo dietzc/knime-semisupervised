@@ -48,7 +48,7 @@
  * History
  *   Sep 29, 2008 (wiswedel): created
  */
-package org.knime.paruni.semisupervised.distances;
+package org.knime.semisupervised.distances;
 
 import org.knime.base.distance.Distance;
 import org.knime.core.data.DataCell;
@@ -56,57 +56,74 @@ import org.knime.core.data.DataColumnSpec;
 import org.knime.core.data.DataRow;
 import org.knime.core.data.DataTableSpec;
 import org.knime.core.data.DataValue;
-import org.knime.core.data.DoubleValue;
+import org.knime.core.data.vector.bitvector.BitVectorValue;
+import org.knime.core.data.vector.bitvector.DenseBitVectorCellFactory;
+import org.knime.core.data.vector.bitvector.SparseBitVectorCell;
+import org.knime.core.data.vector.bitvector.SparseBitVectorCellFactory;
 import org.knime.core.node.InvalidSettingsException;
 
-public final class EuclideanSimilarity extends Distance {
+public final class TanimotoSimilarity extends Distance {
 
-    public EuclideanSimilarity() {
+    public static final TanimotoSimilarity INSTANCE = new TanimotoSimilarity();
+
+    public TanimotoSimilarity() {
     }
 
     /** {@inheritDoc} */
     @Override
     public double distance(final DataRow row1, final DataRow row2) {
-        if (row1.getNumCells() != row2.getNumCells()) {
-            throw new IllegalArgumentException("Invalid length: " + row1.getNumCells() + " vs. " + row2.getNumCells());
+        if (row1.getNumCells() < 1 || row2.getNumCells() < 1) {
+            throw new IllegalArgumentException("Invalid length (both " + "should be 1) " + row1.getNumCells() + " and "
+                    + row2.getNumCells());
         }
-        double dis = 0.0;
-        for (int i = 0; i < row1.getNumCells(); i++) {
-            DataCell cell1 = row1.getCell(i);
-            DataCell cell2 = row2.getCell(i);
-            if (cell1.getType().isCompatible(DoubleValue.class) && cell2.getType().isCompatible(DoubleValue.class)) {
-                if (cell1.isMissing()) {
-                    throw new IllegalArgumentException("Cell in row \"" + row1.getKey() + "\" is missing.");
-                }
-                if (cell2.isMissing()) {
-                    throw new IllegalArgumentException("Cell in row \"" + row2.getKey() + "\" is missing.");
-                }
-                double d = ((DoubleValue)cell1).getDoubleValue();
-                d -= ((DoubleValue)cell2).getDoubleValue();
-                dis += d * d;
-            }
+        DataCell cell1 = row1.getCell(0);
+        DataCell cell2 = row2.getCell(0);
+        if (cell1.isMissing()) {
+            throw new IllegalArgumentException("Cell in row \"" + row1.getKey() + "\" is missing.");
         }
-        return Math.exp(-Math.sqrt(dis));
+        if (cell2.isMissing()) {
+            throw new IllegalArgumentException("Cell in row \"" + row2.getKey() + "\" is missing.");
+        }
+        if (!(cell1 instanceof BitVectorValue)) {
+            throw new IllegalArgumentException("No bit vector: " + cell1);
+        }
+        if (!(cell2 instanceof BitVectorValue)) {
+            throw new IllegalArgumentException("No bit vector: " + cell2);
+        }
+        BitVectorValue b1 = (BitVectorValue)cell1;
+        BitVectorValue b2 = (BitVectorValue)cell2;
+        long nominator;
+        if (cell1 instanceof SparseBitVectorCell) {
+            nominator = SparseBitVectorCellFactory.and(b1, b2).cardinality();
+        } else {
+            nominator = DenseBitVectorCellFactory.and(b1, b2).cardinality();
+        }
+        long denominator = b1.cardinality() + b2.cardinality() - nominator;
+        if (denominator > 0) {
+            return 1 - (1.0 - nominator / (double)denominator);
+        } else {
+            return 0.0;
+        }
     }
 
     /** {@inheritDoc} */
     @Override
     public void validateInput(final DataTableSpec spec) throws InvalidSettingsException {
-        if (spec.getNumColumns() <= 0) {
-            throw new InvalidSettingsException("No columns for distance calculation");
+        if (spec.getNumColumns() != 1) {
+            throw new InvalidSettingsException("Invalid number of columns for " + "distance calculation: "
+                    + spec.getNumColumns());
         }
-        for (DataColumnSpec c : spec) {
-            if (!c.getType().isCompatible(DoubleValue.class)) {
-                throw new InvalidSettingsException("Can't use column \"" + c.getName()
-                        + "\" for distance calculation, wrong type: " + c.getType());
-            }
+        DataColumnSpec c = spec.getColumnSpec(0);
+        if (!c.getType().isCompatible(BitVectorValue.class)) {
+            throw new InvalidSettingsException("Can't use column \"" + c.getName()
+                    + "\" for distance calculation, wrong type: " + c.getType());
         }
     }
 
     /** {@inheritDoc} */
     @Override
     public String getName() {
-        return "Euclidean Similarity (e^(-distance))";
+        return "Tanimoto Similarity (1-Tanimoto)";
     }
 
     /**
@@ -115,6 +132,6 @@ public final class EuclideanSimilarity extends Distance {
     @SuppressWarnings("unchecked")
     @Override
     public Class<? extends DataValue>[] getCompatibleDataValues() {
-        return new Class[]{DoubleValue.class};
+        return new Class[]{BitVectorValue.class};
     }
 }

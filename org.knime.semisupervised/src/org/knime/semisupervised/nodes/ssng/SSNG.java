@@ -47,7 +47,7 @@
  *
  * Created on Apr 24, 2014 by dietzc
  */
-package org.knime.paruni.semisupervised.nodes.ssng;
+package org.knime.semisupervised.nodes.ssng;
 
 import java.util.HashSet;
 

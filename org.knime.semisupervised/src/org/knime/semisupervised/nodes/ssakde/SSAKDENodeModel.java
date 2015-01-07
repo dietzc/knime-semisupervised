@@ -1,4 +1,4 @@
-package org.knime.paruni.semisupervised.nodes.ssakde;
+package org.knime.semisupervised.nodes.ssakde;
 
 import java.io.File;
 import java.io.IOException;

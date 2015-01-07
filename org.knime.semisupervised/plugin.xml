@@ -16,29 +16,53 @@
       <node
             category-path="/paruni/sslpu"
             expert-flag="false"
-            factory-class="org.knime.paruni.semisupervised.nodes.ssakde.SSAKDENodeFactory"
+            factory-class="org.knime.semisupervised.nodes.ssakde.SSAKDENodeFactory"
             id="org.knime.paruni.semisupervised.nodes.ssakde.SSAKDENodeFactory">
       </node>
       <node
             category-path="/paruni/sslpu"
             expert-flag="false"
-            factory-class="org.knime.paruni.semisupervised.nodes.activesearch.ActiveSearchOnGraphsNodeFactory"
+            factory-class="org.knime.semisupervised.nodes.activesearch.ActiveSearchOnGraphsNodeFactory"
             id="org.knime.paruni.semisupervised.activesearch.ActiveSearchOnGraphsNodeFactory">
       </node>
       <node
             category-path="/paruni/sslpu"
             expert-flag="false"
-            factory-class="org.knime.paruni.semisupervised.nodes.ssng.SSNGNodeFactory"
+            factory-class="org.knime.semisupervised.nodes.ssng.SSNGNodeFactory"
             id="org.knime.paruni.semisupervised.nodes.ssng.SSNGNodeFactory">
       </node>
    </extension>
+
+   <extension
+         point="org.knime.workbench.repository.categories">
+      <category
+            icon="icons/missing.gif"
+            level-id="ssl"
+            locked="true"
+            name="Semi-Supervised Learning"
+            path="/">
+      </category>
+   </extension>
+   <extension
+         point="org.knime.workbench.repository.nodes">
+      <node
+            category-path="ssl"
+            expert-flag="false"
+            factory-class="org.knime.semisupervised.nodes.lp.LabelPropagationNodeFactory"
+            id="org.knime.paruni.semisupervised.nodes.ssakde.SSAKDENodeFactory">
+      </node>
+
+
+   </extension>
+
+
    <extension
          point="org.knime.distmatrix.DistanceFunctions">
       <DistanceFunction
-            DistanceFunction="org.knime.paruni.semisupervised.distances.EuclideanSimilarity">
+            DistanceFunction="org.knime.semisupervised.distances.EuclideanSimilarity">
       </DistanceFunction>
       <DistanceFunction
-            DistanceFunction="org.knime.paruni.semisupervised.distances.TanimotoSimilarity">
+            DistanceFunction="org.knime.semisupervised.distances.TanimotoSimilarity">
       </DistanceFunction>
    </extension>
 </plugin>

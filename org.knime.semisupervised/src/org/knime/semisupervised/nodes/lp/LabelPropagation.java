@@ -47,7 +47,7 @@
  *
  * Created on Feb 3, 2014 by dietzc
  */
-package org.knime.paruni.semisupervised.nodes.lp;
+package org.knime.semisupervised.nodes.lp;
 
 import java.util.ArrayList;
 import java.util.List;

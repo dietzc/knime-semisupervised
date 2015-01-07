@@ -1,4 +1,4 @@
-package org.knime.paruni.semisupervised.nodes.activesearch;
+package org.knime.semisupervised.nodes.activesearch;
 
 import java.io.File;
 import java.io.IOException;

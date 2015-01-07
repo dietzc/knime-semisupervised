@@ -1,0 +1,20 @@
+<!DOCTYPE knimeNode PUBLIC "-//UNIKN//DTD KNIME Node 2.0//EN" "http://www.knime.org/Node.dtd">
+<knimeNode icon="icons/threshold.png" type="Manipulator">
+	<name>Semi-Supervised Neighborgrams</name>
+	<shortDescription>
+		Monster contribution.
+	</shortDescription>
+
+	<fullDescription>
+		<intro>
+		</intro>
+	</fullDescription>
+
+	<ports>
+		<inPort name="labeled" index="0">Data with probability
+			distributions assigned
+		</inPort>
+		<outPort name="probabilities" index="0">Classification Result
+		</outPort>
+	</ports>
+</knimeNode>

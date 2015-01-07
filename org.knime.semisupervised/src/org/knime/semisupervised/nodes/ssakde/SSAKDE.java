@@ -47,7 +47,7 @@
  *
  * Created on Feb 3, 2014 by dietzc
  */
-package org.knime.paruni.semisupervised.nodes.ssakde;
+package org.knime.semisupervised.nodes.ssakde;
 
 import java.util.ArrayList;
 import java.util.HashMap;
